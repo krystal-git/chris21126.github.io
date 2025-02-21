@@ -1,0 +1,21 @@
+body { margin: 0; padding: 0; font-size: x-large; }
+
+:root {
+    /* Light Theme */
+    --terminal-background: #fafafa;
+    --terminal-foreground: #383a42;
+
+    --highlighted-line: #bd4bbd;
+    --ignored-line: #bebaba;
+
+    --caret-box: grey;
+
+    /* Dark Theme */
+    --terminal-background: #282c34;
+    --terminal-foreground: #dcdfe4;
+    
+    --highlighted-line: #bd4bbd;
+    --ignored-line: #969696;
+
+    --caret-box: white;
+}

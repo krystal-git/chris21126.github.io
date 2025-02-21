@@ -1,0 +1,23 @@
+@import url(rootvariables.css);
+
+#terminal * { color: white; }
+#terminal {
+    padding: 5px;
+    width: 100vw;
+    background-color: var(--terminal-background);
+}
+
+#cli-input-paragraph::before { content: '~'; }
+#cli-input:focus { animation: caret-blink 1s infinite; }
+#cli-input {
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+
+    border: none;
+    outline: none;
+    background-color: inherit;
+    border: 1px solid var(--caret-box);
+    width: 1ch;
+}
+
