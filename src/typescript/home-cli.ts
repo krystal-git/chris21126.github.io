@@ -29,7 +29,7 @@ function runCommand(event: KeyboardEvent, cliInput: string = terminalInput.value
             break;
             case "exit":
                 console.log(terminalWrapper)
-                document.body.removeChild(terminalWrapper.parentElement)
+                document.body.removeChild(terminalWrapper.parentNode!)
                 break;
             default:
                 terminalOutput.innerText = `Command "${cliInput}" does not exist.`
