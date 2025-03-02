@@ -22,4 +22,3 @@ function copyDiscordToClipboard() {
 steamSocial.addEventListener("click", openSteamInNewTab)
 discordSocial.addEventListener("click", copyDiscordToClipboard)
 githubSocial.addEventListener("click", openGithubInNewTab)
-

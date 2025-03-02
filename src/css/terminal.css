@@ -1,11 +1,7 @@
-@import url(rootvariables.css);
+@import url("rootvariables.css");
 
-#terminal * { color: white; }
-#terminal {
-    padding: 5px;
-    width: 100vw;
-    background-color: var(--terminal-background);
-}
+.terminal * { color: white; background-color: var(--terminal-background) }
+#terminalWrapper { padding: 5px; width: 100vw; }
 
 #cli-input-paragraph::before { content: '~'; }
 #cli-input:focus { animation: caret-blink 1s infinite; }

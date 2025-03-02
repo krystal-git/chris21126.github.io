@@ -19,16 +19,14 @@
       <button class="github">Github</button>
     </div>
   </section>
-  <section>
-    <div id="terminal">
+  <section class="terminal">
+    <div id="terminalWrapper">
       <code id="cmd">
-        <p id="help-line">Type help for a list of supported commands.</p>
+        <p id="help-line">Type "help" for a list of supported commands.</p>
         <p id="cli-input-paragraph"><input type="text" id="cli-input"></p>
-        
-        <ol id="command-history"></ol>
+        <div id="cli-output"></div>
       </code>
     </div>
-
   </section>
   <script type="module" src="/src/main.ts"></script>
 </body>
