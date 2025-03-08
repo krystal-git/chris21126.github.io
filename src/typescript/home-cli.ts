@@ -18,11 +18,11 @@ let helpCommand: Object = {
 var isCMDDown = true;
 
 // EXECUTEABLE COMMANDS (functions)
-export function inputDynamicSizeModifier() {
+function inputDynamicSizeModifier() {
   terminalInput.style.width = terminalInput.value.length + "ch";
 }
 
-export function runCommand(
+function runCommand(
   event: KeyboardEvent,
   cliInput: string = terminalInput.value
 ) {
@@ -91,3 +91,5 @@ export function triggerOnCombination(event: KeyboardEvent) {
     isCMDDown = false;
   }
 }
+
+export * as cli from "./home"

@@ -1,5 +1,4 @@
-import './home-cli'
-import { inputDynamicSizeModifier, runCommand, triggerOnCombination } from './home-cli'
+import { triggerOnCombination } from "./home-cli"
 
 // HTML Elements
 var steamSocial = document.querySelector(".steam") as HTMLButtonElement
