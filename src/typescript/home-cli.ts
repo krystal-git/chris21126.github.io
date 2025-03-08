@@ -22,12 +22,34 @@ function inputDynamicSizeModifier() {
   terminalInput.style.width = terminalInput.value.length + "ch";
 }
 
+function terminalRedirectionMessage(message: string) {
+  var howMany: number = 1;
+  setInterval(() => {
+    howMany = (howMany + 1) % 4;
+    terminalOutput.textContent =
+      `Redirecting to ${message}` + ".".repeat(howMany);
+  }, 1000);
+}
 function runCommand(
   event: KeyboardEvent,
   cliInput: string = terminalInput.value
 ) {
   if (event.code == "Enter") {
     switch (cliInput) {
+      case "socials":
+        terminalOutput.textContent = "Coming soon...";
+        break;
+      case "petthecat":
+        terminalRedirectionMessage("petthecat");
+        window.open("./src/petthecat.html", "_blank");
+        break;
+      case "thoughts":
+        terminalRedirectionMessage("thoughts book");
+        window.open("./src/thoughtspage.html", "_blank");
+        break;
+      case "settings":
+        terminalOutput.textContent = "Coming soon...";
+        break;
       case "help":
         terminalOutput.innerText = "";
         var helpCommandLine = document.createElement("ol") as HTMLOListElement;
@@ -39,6 +61,7 @@ function runCommand(
             "li"
           ) as HTMLLIElement;
           helpCommandLinePair.innerText += `${key}: ${value}`;
+          helpCommandLinePair.style.listStyleType = "none";
           helpCommandLine.appendChild(helpCommandLinePair);
         }
         break;
@@ -60,7 +83,7 @@ function runCommand(
 }
 
 export function triggerOnCombination(event: KeyboardEvent) {
-    if (isCMDDown && event.shiftKey && event.key == "T") {
+  if (isCMDDown && event.shiftKey && event.key == "T") {
     console.log("Combination pressed: Shift +", event.key);
 
     var createTerminalSectionElement = document.createElement(
@@ -78,18 +101,18 @@ export function triggerOnCombination(event: KeyboardEvent) {
     </div>`;
 
     document.body.insertBefore(
-        createTerminalSectionElement,
-        document.body.children[1]
-        );
-    terminalWrapper = document.getElementById("terminalWrapper") as HTMLDivElement;
+      createTerminalSectionElement,
+      document.body.children[1]
+    );
+    terminalWrapper = document.getElementById(
+      "terminalWrapper"
+    ) as HTMLDivElement;
     terminalInput = document.getElementById("cli-input") as HTMLInputElement;
     terminalOutput = document.getElementById("cli-output") as HTMLDivElement;
-    
+
     terminalInput.addEventListener("input", inputDynamicSizeModifier);
     terminalInput.addEventListener("keydown", runCommand);
 
     isCMDDown = false;
   }
 }
-
-export * as cli from "./home"
