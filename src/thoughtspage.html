@@ -1,12 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Thoughts</title>
   </head>
   <body>
-    <script type="module" src="/src/main.ts"></script>
+    <header>Thoughts Book</header>
+    <section class="input-section">
+    <div class="input-container">
+      <h4>Share your thoughts...</h4>
+      <form action="">
+        <div id="thoughts-font-toolbar"></div>
+        <input type="text" id="thoughts-input" />
+        <div id="thoughts-avatars"></div>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </section>
+  <section class="comment-section"></section>
+    <script type="module" src="./typescript/thoughts.ts"></script>
   </body>
 </html>

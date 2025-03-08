@@ -15,7 +15,7 @@ let helpCommand: Object = {
 };
 
 // OTHER VARIABLES
-var isCMDDown = true;
+var CMDTERMINATED = true;
 
 // EXECUTEABLE COMMANDS (functions)
 function inputDynamicSizeModifier() {
@@ -70,7 +70,7 @@ function runCommand(
         break;
       case "exit":
         document.body.removeChild(terminalWrapper.parentNode!);
-        isCMDDown = true;
+        CMDTERMINATED = true;
         console.log("Command line removed.");
         break;
       default:
@@ -83,7 +83,7 @@ function runCommand(
 }
 
 export function triggerOnCombination(event: KeyboardEvent) {
-  if (isCMDDown && event.shiftKey && event.key == "T") {
+  if (CMDTERMINATED && event.shiftKey && event.key == "T") {
     console.log("Combination pressed: Shift +", event.key);
 
     var createTerminalSectionElement = document.createElement(
@@ -100,19 +100,14 @@ export function triggerOnCombination(event: KeyboardEvent) {
       </code>
     </div>`;
 
-    document.body.insertBefore(
-      createTerminalSectionElement,
-      document.body.children[1]
-    );
-    terminalWrapper = document.getElementById(
-      "terminalWrapper"
-    ) as HTMLDivElement;
+    document.body.insertBefore(createTerminalSectionElement, document.body.children[1]);
+    terminalWrapper = document.getElementById("terminalWrapper") as HTMLDivElement;
     terminalInput = document.getElementById("cli-input") as HTMLInputElement;
     terminalOutput = document.getElementById("cli-output") as HTMLDivElement;
 
     terminalInput.addEventListener("input", inputDynamicSizeModifier);
     terminalInput.addEventListener("keydown", runCommand);
 
-    isCMDDown = false;
+    CMDTERMINATED = false;
   }
 }

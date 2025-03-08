@@ -2,11 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Pet the Cat</title>
   </head>
   <body>
-    <script type="module" src="/src/main.ts"></script>
+    <canvas class="minigame"></canvas>
+    <form action="">
+      <input type="text" id="player-name">
+      <input type="submit" value="Submit">
+    </form>
+    <div id="leaderboard"></div>
+
+    <script type="module" src="./typescript/petthecat.ts"></script>
   </body>
 </html>
