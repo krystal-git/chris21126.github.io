@@ -1,5 +1,12 @@
 @import url("rootvariables.css");
 
+@media only screen and (max-width: 961px) {
+    .terminal { display: none; }
+    #terminalWrapper { display: none; }
+    #cli-input { display: none; }
+    #cli-input-paragraph { display: none; }
+}
+
 .terminal * { color: white; background-color: var(--terminal-background) }
 #terminalWrapper { padding: 5px; width: 100vw; }
 
