@@ -1,46 +1,93 @@
-import './command-list'
-import { helpCommand } from './command-list';
+var terminalWrapper: HTMLDivElement;
+var terminalInput: HTMLInputElement;
+var terminalOutput: HTMLDivElement;
 
-// HTML Elements
-var terminalWrapper = document.getElementById("terminalWrapper") as HTMLDivElement;
-var terminalInput = document.getElementById("cli-input") as HTMLInputElement;
-var terminalOutput = document.getElementById("cli-output") as HTMLDivElement;
+// LIST OF COMMANDS
+let helpCommand: Object = {
+  socials: "see where you can contact and/or stalk the author.",
+  petthecat: "minigame, compete against other cat petters.",
+  thoughts: "guestbook, express yourself and share your thoughts with others.",
+  settings:
+    "tinker with in-built terminal settings to customize your command line experience.",
+  clear: "clears contents of terminal",
+  help: "shows all available commands to use.",
+  exit: "shuts down terminal, returns to home page.",
+};
 
-function inputDynamicSizeModifier() {
-    terminalInput.style.width = terminalInput.value.length + "ch"
+// OTHER VARIABLES
+var isCMDDown = true;
+
+// EXECUTEABLE COMMANDS (functions)
+export function inputDynamicSizeModifier() {
+  terminalInput.style.width = terminalInput.value.length + "ch";
 }
-function runCommand(event: KeyboardEvent, cliInput: string = terminalInput.value){
-    if (event.code == "Enter") {
-        switch(cliInput){
-            case "help":
-                terminalOutput.innerText = ""
-                var helpCommandLine = document.createElement("ol") as HTMLOListElement
-                
-                terminalOutput.appendChild(helpCommandLine)
 
-                for (const [key, value] of Object.entries(helpCommand)) {
-                    var helpCommandLinePair = document.createElement("li") as HTMLLIElement
-                    helpCommandLinePair.innerText += `${key}: ${value}`
-                    helpCommandLine.appendChild(helpCommandLinePair)
-                }
-            break;
-            case "clear":
-                terminalOutput.innerText = ""
-            break;
-            case "exit":
-                console.log(terminalWrapper)
-                document.body.removeChild(terminalWrapper.parentNode!)
-                break;
-            default:
-                terminalOutput.innerText = `Command "${cliInput}" does not exist.`
-                break;
+export function runCommand(
+  event: KeyboardEvent,
+  cliInput: string = terminalInput.value
+) {
+  if (event.code == "Enter") {
+    switch (cliInput) {
+      case "help":
+        terminalOutput.innerText = "";
+        var helpCommandLine = document.createElement("ol") as HTMLOListElement;
+
+        terminalOutput.appendChild(helpCommandLine);
+
+        for (const [key, value] of Object.entries(helpCommand)) {
+          var helpCommandLinePair = document.createElement(
+            "li"
+          ) as HTMLLIElement;
+          helpCommandLinePair.innerText += `${key}: ${value}`;
+          helpCommandLine.appendChild(helpCommandLinePair);
         }
-        terminalInput.value = "" 
-        terminalInput.style.width = 1 + "ch" 
+        break;
+      case "clear":
+        terminalOutput.innerText = "";
+        break;
+      case "exit":
+        document.body.removeChild(terminalWrapper.parentNode!);
+        isCMDDown = true;
+        console.log("Command line removed.");
+        break;
+      default:
+        terminalOutput.innerText = `Command "${cliInput}" does not exist.`;
+        break;
     }
-    
+    terminalInput.value = "";
+    terminalInput.style.width = 1 + "ch";
+  }
 }
 
-terminalInput.focus()
-terminalInput.addEventListener('input', inputDynamicSizeModifier)
-terminalInput.addEventListener('keydown', runCommand)
+export function triggerOnCombination(event: KeyboardEvent) {
+    if (isCMDDown && event.shiftKey && event.key == "T") {
+    console.log("Combination pressed: Shift +", event.key);
+
+    var createTerminalSectionElement = document.createElement(
+      "section"
+    ) as HTMLElement;
+    createTerminalSectionElement.setAttribute("class", "terminal");
+    createTerminalSectionElement.innerHTML = `<div id="terminalWrapper">
+      <code id="cmd">
+        <p id="help-line">Type "help" for a list of supported commands.</p>
+        <p id="cli-input-paragraph">
+          <input type="text" id="cli-input">
+        </p>
+        <div id="cli-output"></div>
+      </code>
+    </div>`;
+
+    document.body.insertBefore(
+        createTerminalSectionElement,
+        document.body.children[1]
+        );
+    terminalWrapper = document.getElementById("terminalWrapper") as HTMLDivElement;
+    terminalInput = document.getElementById("cli-input") as HTMLInputElement;
+    terminalOutput = document.getElementById("cli-output") as HTMLDivElement;
+    
+    terminalInput.addEventListener("input", inputDynamicSizeModifier);
+    terminalInput.addEventListener("keydown", runCommand);
+
+    isCMDDown = false;
+  }
+}
