@@ -1,4 +1,5 @@
 import { triggerOnCombination } from "./home-cli"
+import "./wallpaper-animation"
 
 // HTML Elements
 var steamSocial = document.querySelector(".steam") as HTMLButtonElement
@@ -16,7 +17,6 @@ function copyDiscordToClipboard() {
         navigator.clipboard.readText()
             .then((clipText) => clipText)
  }
-
 
 // Event listeners
 window.addEventListener('keypress', triggerOnCombination)

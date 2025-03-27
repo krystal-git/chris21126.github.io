@@ -90,7 +90,7 @@ export function triggerOnCombination(event: KeyboardEvent) {
       "section"
     ) as HTMLElement;
     createTerminalSectionElement.setAttribute("class", "terminal");
-    createTerminalSectionElement.innerHTML = `<div id="terminalWrapper">
+    createTerminalSectionElement.innerHTML = `
       <code id="cmd">
         <p id="help-line">Type "help" for a list of supported commands.</p>
         <p id="cli-input-paragraph">
@@ -98,7 +98,7 @@ export function triggerOnCombination(event: KeyboardEvent) {
         </p>
         <div id="cli-output"></div>
       </code>
-    </div>`;
+    `;
 
     document.body.insertBefore(createTerminalSectionElement, document.body.children[1]);
     terminalWrapper = document.getElementById("terminalWrapper") as HTMLDivElement;

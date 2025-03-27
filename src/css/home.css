@@ -1,1 +1,29 @@
+@import url('rootvariables.css');
 @import url('terminal.css');
+
+section {
+  height: 100vh;
+  width: 100vw;
+}
+
+canvas { position: fixed; }
+
+main {
+  display: grid;
+  justify-content: center;
+  transform: translateY(45vh);
+  font-weight: bold;
+  z-index: 1;
+}
+
+main header { text-align: center; }
+
+.socials button {
+  font-weight: inherit;
+  background-color: var(--catppuccin-crust);
+  color: var(--catppuccin-subtext-1);
+  border: none;
+  box-shadow: none;
+  padding: 5px 10px;
+}
+
